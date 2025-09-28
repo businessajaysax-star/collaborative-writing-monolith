@@ -368,42 +368,77 @@
             </div>
             
             <div id="content" class="content-section hidden">
-                <h2>📝 Content Management</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>📝 Content Management</h2>
+                    <button class="btn" onclick="showCreateContentForm()" style="width: auto; padding: 10px 20px;">
+                        ➕ Create New Content
+                    </button>
+                </div>
                 <p>Manage your content with collaborative editing and review workflows.</p>
                 
-                <div class="content-grid">
-                    <div class="content-card">
+                <div class="content-grid" id="contentList">
+                    <div class="content-card" onclick="editContent(1)">
                         <div class="content-title">Sample Article 1</div>
                         <div class="content-meta">By: Student User | Created: 2024-01-15</div>
                         <div class="content-status status-draft">Draft</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); publishContent(1)">Publish</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); submitForReview(1)">Submit for Review</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteContent(1)">Delete</button>
+                        </div>
                     </div>
-                    <div class="content-card">
+                    <div class="content-card" onclick="editContent(2)">
                         <div class="content-title">Sample Article 2</div>
                         <div class="content-meta">By: Student User | Created: 2024-01-14</div>
                         <div class="content-status status-published">Published</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewContent(2)">View</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); editContent(2)">Edit</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteContent(2)">Delete</button>
+                        </div>
                     </div>
-                    <div class="content-card">
+                    <div class="content-card" onclick="editContent(3)">
                         <div class="content-title">Review Article</div>
                         <div class="content-meta">By: Teacher User | Created: 2024-01-13</div>
                         <div class="content-status status-review">Under Review</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewContent(3)">View</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); approveContent(3)">Approve</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); rejectContent(3)">Reject</button>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div id="reviews" class="content-section hidden">
-                <h2>⭐ Review System</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>⭐ Review System</h2>
+                    <button class="btn" onclick="showCreateReviewForm()" style="width: auto; padding: 10px 20px;">
+                        ➕ Assign Review
+                    </button>
+                </div>
                 <p>Comprehensive peer review system with detailed feedback and ratings.</p>
                 
-                <div class="content-grid">
-                    <div class="content-card">
+                <div class="content-grid" id="reviewList">
+                    <div class="content-card" onclick="openReview(1)">
                         <div class="content-title">Review Assignment 1</div>
-                        <div class="content-meta">Reviewer: Teacher User | Status: Pending</div>
+                        <div class="content-meta">Reviewer: Teacher User | Status: Pending | Due: 2024-02-01</div>
                         <div class="content-status status-review">Pending Review</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); openReview(1)">Start Review</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); reassignReview(1)">Reassign</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); cancelReview(1)">Cancel</button>
+                        </div>
                     </div>
-                    <div class="content-card">
+                    <div class="content-card" onclick="openReview(2)">
                         <div class="content-title">Review Assignment 2</div>
-                        <div class="content-meta">Reviewer: Admin User | Status: Completed</div>
+                        <div class="content-meta">Reviewer: Admin User | Status: Completed | Rating: 4.5/5</div>
                         <div class="content-status status-published">Completed</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewReview(2)">View Review</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); approveReview(2)">Approve</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #ff9800;" onclick="event.stopPropagation(); requestRevision(2)">Request Revision</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,10 +546,251 @@
             }, 3000);
         }
         
+        // Content Management Functions
+        function showCreateContentForm() {
+            const form = `
+                <div id="createContentModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+                        <h3 style="margin-bottom: 20px;">📝 Create New Content</h3>
+                        <form id="contentForm">
+                            <div class="form-group">
+                                <label class="form-label" for="contentTitle">Title</label>
+                                <input type="text" id="contentTitle" class="form-input" placeholder="Enter content title" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contentBody">Content</label>
+                                <textarea id="contentBody" class="form-input" rows="8" placeholder="Enter your content here..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contentLanguage">Language</label>
+                                <select id="contentLanguage" class="form-input">
+                                    <option value="en">English</option>
+                                    <option value="hi">Hindi</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                <button type="submit" class="btn" style="flex: 1;">Create Content</button>
+                                <button type="button" class="btn" onclick="closeCreateContentForm()" style="flex: 1; background: #666;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', form);
+            
+            document.getElementById('contentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                createNewContent();
+            });
+        }
+        
+        function closeCreateContentForm() {
+            const modal = document.getElementById('createContentModal');
+            if (modal) modal.remove();
+        }
+        
+        function createNewContent() {
+            const title = document.getElementById('contentTitle').value;
+            const body = document.getElementById('contentBody').value;
+            const language = document.getElementById('contentLanguage').value;
+            
+            if (title && body) {
+                const newContent = `
+                    <div class="content-card" onclick="editContent(${Date.now()})">
+                        <div class="content-title">${title}</div>
+                        <div class="content-meta">By: Admin User | Created: ${new Date().toLocaleDateString()} | Language: ${language.toUpperCase()}</div>
+                        <div class="content-status status-draft">Draft</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); publishContent(${Date.now()})">Publish</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); submitForReview(${Date.now()})">Submit for Review</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteContent(${Date.now()})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('contentList').insertAdjacentHTML('afterbegin', newContent);
+                closeCreateContentForm();
+                showStatus('Content created successfully!', 'success');
+            }
+        }
+        
+        function editContent(id) {
+            showStatus(`Opening editor for content ID: ${id}`, 'success');
+            // In a real app, this would open a rich text editor
+            alert(`Edit Content ${id}\n\nThis would open a rich text editor with collaborative features, version control, and real-time updates.`);
+        }
+        
+        function viewContent(id) {
+            showStatus(`Viewing content ID: ${id}`, 'success');
+            alert(`View Content ${id}\n\nThis would open a read-only view of the content with comments, version history, and review feedback.`);
+        }
+        
+        function publishContent(id) {
+            showStatus(`Content ${id} published successfully!`, 'success');
+            // Update status in UI
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Published';
+            status.className = 'content-status status-published';
+        }
+        
+        function submitForReview(id) {
+            showStatus(`Content ${id} submitted for review!`, 'success');
+            // Update status in UI
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Under Review';
+            status.className = 'content-status status-review';
+        }
+        
+        function approveContent(id) {
+            showStatus(`Content ${id} approved!`, 'success');
+            // Update status in UI
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Approved';
+            status.className = 'content-status status-published';
+        }
+        
+        function rejectContent(id) {
+            showStatus(`Content ${id} rejected.`, 'error');
+            // Update status in UI
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Rejected';
+            status.className = 'content-status status-draft';
+        }
+        
+        function deleteContent(id) {
+            if (confirm(`Are you sure you want to delete content ${id}?`)) {
+                const card = event.target.closest('.content-card');
+                card.remove();
+                showStatus(`Content ${id} deleted successfully!`, 'success');
+            }
+        }
+        
+        // Review Management Functions
+        function showCreateReviewForm() {
+            const form = `
+                <div id="createReviewModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px;">
+                        <h3 style="margin-bottom: 20px;">⭐ Assign Review</h3>
+                        <form id="reviewForm">
+                            <div class="form-group">
+                                <label class="form-label" for="reviewContent">Content to Review</label>
+                                <select id="reviewContent" class="form-input" required>
+                                    <option value="">Select content...</option>
+                                    <option value="1">Sample Article 1</option>
+                                    <option value="2">Sample Article 2</option>
+                                    <option value="3">Review Article</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="reviewer">Reviewer</label>
+                                <select id="reviewer" class="form-input" required>
+                                    <option value="">Select reviewer...</option>
+                                    <option value="teacher">Teacher User</option>
+                                    <option value="admin">Admin User</option>
+                                    <option value="expert">Expert Reviewer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="reviewDue">Due Date</label>
+                                <input type="date" id="reviewDue" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="reviewCriteria">Review Criteria</label>
+                                <textarea id="reviewCriteria" class="form-input" rows="3" placeholder="Specific criteria for this review..."></textarea>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                <button type="submit" class="btn" style="flex: 1;">Assign Review</button>
+                                <button type="button" class="btn" onclick="closeCreateReviewForm()" style="flex: 1; background: #666;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', form);
+            
+            document.getElementById('reviewForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                createNewReview();
+            });
+        }
+        
+        function closeCreateReviewForm() {
+            const modal = document.getElementById('createReviewModal');
+            if (modal) modal.remove();
+        }
+        
+        function createNewReview() {
+            const content = document.getElementById('reviewContent').value;
+            const reviewer = document.getElementById('reviewer').value;
+            const dueDate = document.getElementById('reviewDue').value;
+            const criteria = document.getElementById('reviewCriteria').value;
+            
+            if (content && reviewer && dueDate) {
+                const newReview = `
+                    <div class="content-card" onclick="openReview(${Date.now()})">
+                        <div class="content-title">Review Assignment ${Date.now()}</div>
+                        <div class="content-meta">Reviewer: ${reviewer} | Status: Pending | Due: ${dueDate}</div>
+                        <div class="content-status status-review">Pending Review</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); openReview(${Date.now()})">Start Review</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); reassignReview(${Date.now()})">Reassign</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); cancelReview(${Date.now()})">Cancel</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('reviewList').insertAdjacentHTML('afterbegin', newReview);
+                closeCreateReviewForm();
+                showStatus('Review assigned successfully!', 'success');
+            }
+        }
+        
+        function openReview(id) {
+            showStatus(`Opening review interface for review ID: ${id}`, 'success');
+            alert(`Review Interface ${id}\n\nThis would open a comprehensive review interface with:\n• Content viewing\n• Rating system (1-5 stars)\n• Detailed feedback forms\n• Review criteria checklist\n• Comment system\n• Version comparison`);
+        }
+        
+        function viewReview(id) {
+            showStatus(`Viewing completed review ID: ${id}`, 'success');
+            alert(`View Review ${id}\n\nThis would show the completed review with:\n• Reviewer feedback\n• Ratings and scores\n• Comments and suggestions\n• Approval status\n• Revision history`);
+        }
+        
+        function reassignReview(id) {
+            showStatus(`Review ${id} reassignment requested!`, 'success');
+            alert(`Reassign Review ${id}\n\nThis would open a reassignment interface to assign the review to a different reviewer.`);
+        }
+        
+        function cancelReview(id) {
+            if (confirm(`Are you sure you want to cancel review ${id}?`)) {
+                const card = event.target.closest('.content-card');
+                card.remove();
+                showStatus(`Review ${id} cancelled successfully!`, 'success');
+            }
+        }
+        
+        function approveReview(id) {
+            showStatus(`Review ${id} approved!`, 'success');
+            // Update status in UI
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Approved';
+            status.className = 'content-status status-published';
+        }
+        
+        function requestRevision(id) {
+            showStatus(`Revision requested for review ${id}!`, 'success');
+            alert(`Request Revision ${id}\n\nThis would send a revision request to the reviewer with specific feedback and requirements.`);
+        }
+        
         // Initialize
         console.log('🚀 Collaborative Writing Platform - Test App Loaded');
         console.log('📊 Features available: Content Management, Peer Review, Organizations, Notifications');
         console.log('🔐 Login with: admin@test.com / password');
+        console.log('✨ Interactive features: Create, Edit, Delete, Publish, Review content');
     </script>
 </body>
 </html>
