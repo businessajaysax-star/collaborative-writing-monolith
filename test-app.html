@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Writing Platform - Test App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .login-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+        
+        .btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: #1565c0;
+        }
+        
+        .demo-credentials {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .demo-credentials h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .demo-credentials p {
+            margin: 5px 0;
+            font-family: monospace;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .status.success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #f44336;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .dashboard {
+            display: none;
+        }
+        
+        .dashboard.active {
+            display: block;
+        }
+        
+        .nav {
+            background: white;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .nav-item {
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: #f5f5f5;
+        }
+        
+        .nav-item.active {
+            background: #1976d2;
+            color: white;
+        }
+        
+        .content-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .content-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .content-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .content-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .content-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .content-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-draft {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .status-published {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .status-review {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Collaborative Writing Platform</h1>
+            <p>Monolithic Architecture - Test Application</p>
+        </div>
+        
+        <div id="loginSection" class="login-section">
+            <h2 style="text-align: center; margin-bottom: 20px;">🔐 Login to Test Platform</h2>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-input" value="admin@test.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-input" value="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            
+            <div class="demo-credentials">
+                <h4>🎯 Demo Credentials</h4>
+                <p><strong>Email:</strong> admin@test.com</p>
+                <p><strong>Password:</strong> password</p>
+                <p><em>Click "Login" to access the dashboard</em></p>
+            </div>
+        </div>
+        
+        <div id="status" class="status hidden"></div>
+        
+        <div id="dashboard" class="dashboard">
+            <div class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-section="overview">📊 Overview</li>
+                    <li class="nav-item" data-section="content">📝 Content</li>
+                    <li class="nav-item" data-section="reviews">⭐ Reviews</li>
+                    <li class="nav-item" data-section="users">👥 Users</li>
+                    <li class="nav-item" data-section="organizations">🏢 Organizations</li>
+                    <li class="nav-item" data-section="notifications">🔔 Notifications</li>
+                </ul>
+            </div>
+            
+            <div id="overview" class="content-section">
+                <h2>📊 Dashboard Overview</h2>
+                <p>Welcome to the Collaborative Writing Platform! This is a test application demonstrating the monolithic architecture.</p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-title">Content Management</div>
+                        <div class="feature-description">Create, edit, and manage content with collaborative features and version control.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⭐</div>
+                        <div class="feature-title">Peer Review System</div>
+                        <div class="feature-description">Comprehensive review workflow with ratings, feedback, and approval processes.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏢</div>
+                        <div class="feature-title">Multi-tenant Organizations</div>
+                        <div class="feature-description">Support for multiple organizations with role-based access control.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-title">Magazine Generation</div>
+                        <div class="feature-description">Automated PDF magazine creation with professional layouts.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <div class="feature-title">Multi-language Support</div>
+                        <div class="feature-description">Hindi and English language support with automatic detection.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <div class="feature-title">Real-time Notifications</div>
+                        <div class="feature-description">Socket.IO powered real-time updates and notifications.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="content" class="content-section hidden">
+                <h2>📝 Content Management</h2>
+                <p>Manage your content with collaborative editing and review workflows.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-title">Sample Article 1</div>
+                        <div class="content-meta">By: Student User | Created: 2024-01-15</div>
+                        <div class="content-status status-draft">Draft</div>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-title">Sample Article 2</div>
+                        <div class="content-meta">By: Student User | Created: 2024-01-14</div>
+                        <div class="content-status status-published">Published</div>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-title">Review Article</div>
+                        <div class="content-meta">By: Teacher User | Created: 2024-01-13</div>
+                        <div class="content-status status-review">Under Review</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="reviews" class="content-section hidden">
+                <h2>⭐ Review System</h2>
+                <p>Comprehensive peer review system with detailed feedback and ratings.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-title">Review Assignment 1</div>
+                        <div class="content-meta">Reviewer: Teacher User | Status: Pending</div>
+                        <div class="content-status status-review">Pending Review</div>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-title">Review Assignment 2</div>
+                        <div class="content-meta">Reviewer: Admin User | Status: Completed</div>
+                        <div class="content-status status-published">Completed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="users" class="content-section hidden">
+                <h2>👥 User Management</h2>
+                <p>Manage users with different roles and permissions.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-title">Admin User</div>
+                        <div class="content-meta">admin@test.com | Role: Admin</div>
+                        <div class="content-status status-published">Active</div>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-title">Teacher User</div>
+                        <div class="content-meta">teacher@test.com | Role: Teacher</div>
+                        <div class="content-status status-published">Active</div>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-title">Student User</div>
+                        <div class="content-meta">student@test.com | Role: Student</div>
+                        <div class="content-status status-published">Active</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="organizations" class="content-section hidden">
+                <h2>🏢 Organization Management</h2>
+                <p>Multi-tenant organization support with role-based access.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-title">Test Organization</div>
+                        <div class="content-meta">Description: A test organization for demonstration</div>
+                        <div class="content-status status-published">Active</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="notifications" class="content-section hidden">
+                <h2>🔔 Notifications</h2>
+                <p>Real-time notifications and updates.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-title">Welcome!</div>
+                        <div class="content-meta">Welcome to the platform</div>
+                        <div class="content-status status-review">Unread</div>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-title">New Content</div>
+                        <div class="content-meta">New content has been published</div>
+                        <div class="content-status status-review">Unread</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email === 'admin@test.com' && password === 'password') {
+                showStatus('Login successful! Welcome to the platform.', 'success');
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashboard').classList.add('active');
+            } else {
+                showStatus('Invalid credentials. Please try again.', 'error');
+            }
+        });
+        
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Hide all content sections
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Show selected section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.remove('hidden');
+            });
+        });
+        
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.classList.remove('hidden');
+            
+            setTimeout(() => {
+                status.classList.add('hidden');
+            }, 3000);
+        }
+        
+        // Initialize
+        console.log('🚀 Collaborative Writing Platform - Test App Loaded');
+        console.log('📊 Features available: Content Management, Peer Review, Organizations, Notifications');
+        console.log('🔐 Login with: admin@test.com / password');
+    </script>
+</body>
+</html>
