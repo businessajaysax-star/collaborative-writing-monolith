@@ -101,9 +101,9 @@ app.get('/api/notifications', (req, res) => {
 // Serve static files
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
-// Catch all handler for React app
+// Catch all handler for React app - serve the test HTML file
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
+  res.sendFile(path.join(__dirname, 'test-app.html'));
 });
 
 app.listen(PORT, () => {

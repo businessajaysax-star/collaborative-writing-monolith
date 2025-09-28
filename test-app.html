@@ -444,55 +444,119 @@
             </div>
             
             <div id="users" class="content-section hidden">
-                <h2>👥 User Management</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>👥 User Management</h2>
+                    <button class="btn" onclick="showCreateUserForm()" style="width: auto; padding: 10px 20px;">
+                        ➕ Add User
+                    </button>
+                </div>
                 <p>Manage users with different roles and permissions.</p>
                 
-                <div class="content-grid">
-                    <div class="content-card">
+                <div class="content-grid" id="userList">
+                    <div class="content-card" onclick="editUser(1)">
                         <div class="content-title">Admin User</div>
-                        <div class="content-meta">admin@test.com | Role: Admin</div>
+                        <div class="content-meta">admin@test.com | Role: Admin | Last Login: 2024-01-15</div>
                         <div class="content-status status-published">Active</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewUser(1)">View Profile</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); editUser(1)">Edit User</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); resetPassword(1)">Reset Password</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteUser(1)">Delete</button>
+                        </div>
                     </div>
-                    <div class="content-card">
+                    <div class="content-card" onclick="editUser(2)">
                         <div class="content-title">Teacher User</div>
-                        <div class="content-meta">teacher@test.com | Role: Teacher</div>
+                        <div class="content-meta">teacher@test.com | Role: Teacher | Last Login: 2024-01-14</div>
                         <div class="content-status status-published">Active</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewUser(2)">View Profile</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); editUser(2)">Edit User</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); resetPassword(2)">Reset Password</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteUser(2)">Delete</button>
+                        </div>
                     </div>
-                    <div class="content-card">
+                    <div class="content-card" onclick="editUser(3)">
                         <div class="content-title">Student User</div>
-                        <div class="content-meta">student@test.com | Role: Student</div>
+                        <div class="content-meta">student@test.com | Role: Student | Last Login: 2024-01-13</div>
                         <div class="content-status status-published">Active</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewUser(3)">View Profile</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); editUser(3)">Edit User</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); resetPassword(3)">Reset Password</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteUser(3)">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div id="organizations" class="content-section hidden">
-                <h2>🏢 Organization Management</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>🏢 Organization Management</h2>
+                    <button class="btn" onclick="showCreateOrganizationForm()" style="width: auto; padding: 10px 20px;">
+                        ➕ Create Organization
+                    </button>
+                </div>
                 <p>Multi-tenant organization support with role-based access.</p>
                 
-                <div class="content-grid">
-                    <div class="content-card">
+                <div class="content-grid" id="organizationList">
+                    <div class="content-card" onclick="editOrganization(1)">
                         <div class="content-title">Test Organization</div>
-                        <div class="content-meta">Description: A test organization for demonstration</div>
+                        <div class="content-meta">Description: A test organization for demonstration | Members: 5 | Created: 2024-01-10</div>
                         <div class="content-status status-published">Active</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewOrganization(1)">View Details</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); manageMembers(1)">Manage Members</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); inviteMembers(1)">Invite Members</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteOrganization(1)">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div id="notifications" class="content-section hidden">
-                <h2>🔔 Notifications</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>🔔 Notifications</h2>
+                    <div>
+                        <button class="btn" onclick="markAllAsRead()" style="width: auto; padding: 10px 20px; margin-right: 10px; background: #4caf50;">
+                            ✅ Mark All Read
+                        </button>
+                        <button class="btn" onclick="clearAllNotifications()" style="width: auto; padding: 10px 20px; background: #f44336;">
+                            🗑️ Clear All
+                        </button>
+                    </div>
+                </div>
                 <p>Real-time notifications and updates.</p>
                 
-                <div class="content-grid">
-                    <div class="content-card">
+                <div class="content-grid" id="notificationList">
+                    <div class="content-card" onclick="viewNotification(1)">
                         <div class="content-title">Welcome!</div>
-                        <div class="content-meta">Welcome to the platform</div>
+                        <div class="content-meta">Welcome to the platform | 2 hours ago</div>
                         <div class="content-status status-review">Unread</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewNotification(1)">View</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); markAsRead(1)">Mark Read</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteNotification(1)">Delete</button>
+                        </div>
                     </div>
-                    <div class="content-card">
-                        <div class="content-title">New Content</div>
-                        <div class="content-meta">New content has been published</div>
+                    <div class="content-card" onclick="viewNotification(2)">
+                        <div class="content-title">New Content Published</div>
+                        <div class="content-meta">New content has been published | 1 hour ago</div>
                         <div class="content-status status-review">Unread</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewNotification(2)">View</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); markAsRead(2)">Mark Read</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteNotification(2)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="content-card" onclick="viewNotification(3)">
+                        <div class="content-title">Review Assignment</div>
+                        <div class="content-meta">You have been assigned a new review | 30 minutes ago</div>
+                        <div class="content-status status-published">Read</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewNotification(3)">View</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); markAsUnread(3)">Mark Unread</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteNotification(3)">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -784,6 +848,268 @@
         function requestRevision(id) {
             showStatus(`Revision requested for review ${id}!`, 'success');
             alert(`Request Revision ${id}\n\nThis would send a revision request to the reviewer with specific feedback and requirements.`);
+        }
+        
+        // Organization Management Functions
+        function showCreateOrganizationForm() {
+            const form = `
+                <div id="createOrganizationModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px;">
+                        <h3 style="margin-bottom: 20px;">🏢 Create Organization</h3>
+                        <form id="organizationForm">
+                            <div class="form-group">
+                                <label class="form-label" for="orgName">Organization Name</label>
+                                <input type="text" id="orgName" class="form-input" placeholder="Enter organization name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="orgDescription">Description</label>
+                                <textarea id="orgDescription" class="form-input" rows="3" placeholder="Enter organization description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="orgWebsite">Website</label>
+                                <input type="url" id="orgWebsite" class="form-input" placeholder="https://example.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="orgType">Organization Type</label>
+                                <select id="orgType" class="form-input" required>
+                                    <option value="">Select type...</option>
+                                    <option value="educational">Educational Institution</option>
+                                    <option value="corporate">Corporate</option>
+                                    <option value="nonprofit">Non-profit</option>
+                                    <option value="government">Government</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                <button type="submit" class="btn" style="flex: 1;">Create Organization</button>
+                                <button type="button" class="btn" onclick="closeCreateOrganizationForm()" style="flex: 1; background: #666;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', form);
+            
+            document.getElementById('organizationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                createNewOrganization();
+            });
+        }
+        
+        function closeCreateOrganizationForm() {
+            const modal = document.getElementById('createOrganizationModal');
+            if (modal) modal.remove();
+        }
+        
+        function createNewOrganization() {
+            const name = document.getElementById('orgName').value;
+            const description = document.getElementById('orgDescription').value;
+            const website = document.getElementById('orgWebsite').value;
+            const type = document.getElementById('orgType').value;
+            
+            if (name && type) {
+                const newOrg = `
+                    <div class="content-card" onclick="editOrganization(${Date.now()})">
+                        <div class="content-title">${name}</div>
+                        <div class="content-meta">${description} | Type: ${type} | Members: 1 | Created: ${new Date().toLocaleDateString()}</div>
+                        <div class="content-status status-published">Active</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewOrganization(${Date.now()})">View Details</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); manageMembers(${Date.now()})">Manage Members</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); inviteMembers(${Date.now()})">Invite Members</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteOrganization(${Date.now()})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('organizationList').insertAdjacentHTML('afterbegin', newOrg);
+                closeCreateOrganizationForm();
+                showStatus('Organization created successfully!', 'success');
+            }
+        }
+        
+        function editOrganization(id) {
+            showStatus(`Editing organization ID: ${id}`, 'success');
+            alert(`Edit Organization ${id}\n\nThis would open an organization editor with:\n• Organization details\n• Member management\n• Settings and permissions\n• Billing and subscription info`);
+        }
+        
+        function viewOrganization(id) {
+            showStatus(`Viewing organization ID: ${id}`, 'success');
+            alert(`Organization Details ${id}\n\nThis would show:\n• Organization information\n• Member list and roles\n• Activity history\n• Settings and configuration\n• Usage statistics`);
+        }
+        
+        function manageMembers(id) {
+            showStatus(`Managing members for organization ${id}`, 'success');
+            alert(`Member Management ${id}\n\nThis would open a member management interface with:\n• Add/remove members\n• Role assignments\n• Permission management\n• Member activity tracking`);
+        }
+        
+        function inviteMembers(id) {
+            showStatus(`Inviting members to organization ${id}`, 'success');
+            alert(`Invite Members ${id}\n\nThis would open an invitation system with:\n• Email invitation form\n• Role selection\n• Custom invitation messages\n• Bulk invitation options`);
+        }
+        
+        function deleteOrganization(id) {
+            if (confirm(`Are you sure you want to delete organization ${id}? This action cannot be undone.`)) {
+                const card = event.target.closest('.content-card');
+                card.remove();
+                showStatus(`Organization ${id} deleted successfully!`, 'success');
+            }
+        }
+        
+        // User Management Functions
+        function showCreateUserForm() {
+            const form = `
+                <div id="createUserModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px;">
+                        <h3 style="margin-bottom: 20px;">👥 Add User</h3>
+                        <form id="userForm">
+                            <div class="form-group">
+                                <label class="form-label" for="userFirstName">First Name</label>
+                                <input type="text" id="userFirstName" class="form-input" placeholder="Enter first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="userLastName">Last Name</label>
+                                <input type="text" id="userLastName" class="form-input" placeholder="Enter last name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="userEmail">Email</label>
+                                <input type="email" id="userEmail" class="form-input" placeholder="Enter email address" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="userRole">Role</label>
+                                <select id="userRole" class="form-input" required>
+                                    <option value="">Select role...</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="student">Student</option>
+                                    <option value="reviewer">Reviewer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="userOrganization">Organization</label>
+                                <select id="userOrganization" class="form-input">
+                                    <option value="">Select organization...</option>
+                                    <option value="1">Test Organization</option>
+                                    <option value="2">New Organization</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                <button type="submit" class="btn" style="flex: 1;">Add User</button>
+                                <button type="button" class="btn" onclick="closeCreateUserForm()" style="flex: 1; background: #666;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', form);
+            
+            document.getElementById('userForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                createNewUser();
+            });
+        }
+        
+        function closeCreateUserForm() {
+            const modal = document.getElementById('createUserModal');
+            if (modal) modal.remove();
+        }
+        
+        function createNewUser() {
+            const firstName = document.getElementById('userFirstName').value;
+            const lastName = document.getElementById('userLastName').value;
+            const email = document.getElementById('userEmail').value;
+            const role = document.getElementById('userRole').value;
+            const organization = document.getElementById('userOrganization').value;
+            
+            if (firstName && lastName && email && role) {
+                const newUser = `
+                    <div class="content-card" onclick="editUser(${Date.now()})">
+                        <div class="content-title">${firstName} ${lastName}</div>
+                        <div class="content-meta">${email} | Role: ${role} | Last Login: Never</div>
+                        <div class="content-status status-published">Active</div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #2196f3;" onclick="event.stopPropagation(); viewUser(${Date.now()})">View Profile</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #ff9800;" onclick="event.stopPropagation(); editUser(${Date.now()})">Edit User</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; margin-right: 5px; background: #4caf50;" onclick="event.stopPropagation(); resetPassword(${Date.now()})">Reset Password</button>
+                            <button class="btn" style="width: auto; padding: 5px 10px; background: #f44336;" onclick="event.stopPropagation(); deleteUser(${Date.now()})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('userList').insertAdjacentHTML('afterbegin', newUser);
+                closeCreateUserForm();
+                showStatus('User added successfully!', 'success');
+            }
+        }
+        
+        function editUser(id) {
+            showStatus(`Editing user ID: ${id}`, 'success');
+            alert(`Edit User ${id}\n\nThis would open a user editor with:\n• Personal information\n• Role and permissions\n• Organization membership\n• Activity history\n• Security settings`);
+        }
+        
+        function viewUser(id) {
+            showStatus(`Viewing user profile ID: ${id}`, 'success');
+            alert(`User Profile ${id}\n\nThis would show:\n• Personal information\n• Activity history\n• Content contributions\n• Review assignments\n• Organization memberships`);
+        }
+        
+        function resetPassword(id) {
+            showStatus(`Password reset initiated for user ${id}`, 'success');
+            alert(`Reset Password ${id}\n\nThis would send a password reset email to the user with instructions to create a new password.`);
+        }
+        
+        function deleteUser(id) {
+            if (confirm(`Are you sure you want to delete user ${id}? This action cannot be undone.`)) {
+                const card = event.target.closest('.content-card');
+                card.remove();
+                showStatus(`User ${id} deleted successfully!`, 'success');
+            }
+        }
+        
+        // Notification Management Functions
+        function viewNotification(id) {
+            showStatus(`Viewing notification ID: ${id}`, 'success');
+            alert(`Notification ${id}\n\nThis would show the full notification details with:\n• Complete message content\n• Related actions\n• Timestamp and priority\n• Related content or reviews`);
+        }
+        
+        function markAsRead(id) {
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Read';
+            status.className = 'content-status status-published';
+            showStatus(`Notification ${id} marked as read!`, 'success');
+        }
+        
+        function markAsUnread(id) {
+            const card = event.target.closest('.content-card');
+            const status = card.querySelector('.content-status');
+            status.textContent = 'Unread';
+            status.className = 'content-status status-review';
+            showStatus(`Notification ${id} marked as unread!`, 'success');
+        }
+        
+        function deleteNotification(id) {
+            if (confirm(`Are you sure you want to delete notification ${id}?`)) {
+                const card = event.target.closest('.content-card');
+                card.remove();
+                showStatus(`Notification ${id} deleted successfully!`, 'success');
+            }
+        }
+        
+        function markAllAsRead() {
+            const notifications = document.querySelectorAll('#notificationList .content-card');
+            notifications.forEach(card => {
+                const status = card.querySelector('.content-status');
+                status.textContent = 'Read';
+                status.className = 'content-status status-published';
+            });
+            showStatus('All notifications marked as read!', 'success');
+        }
+        
+        function clearAllNotifications() {
+            if (confirm('Are you sure you want to clear all notifications?')) {
+                document.getElementById('notificationList').innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No notifications</p>';
+                showStatus('All notifications cleared!', 'success');
+            }
         }
         
         // Initialize
